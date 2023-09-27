@@ -49,14 +49,22 @@ const ImageDisplay = (props) => {
     <div>
       <Grid container gap={1}>
         {currImages.slice(0, visibleImages).map((img) => (
-          <Grid item lg={1.9} md={3.8} xs={5.8} key={img.id}>
+          <Grid item lg={2.3} md={3.8} xs={5.8} key={img.id}>
             <Card style={{ height: "100%" }}>
-              <img
-                src={img.url}
-                loading="lazy"
-                alt=""
-                className="w-full h-auto max-h-48"
-              />
+              <div className="relative group">
+                <img
+                  src={img.url}
+                  loading="lazy"
+                  alt=""
+                  className="w-full h-auto max-h-48"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 flex justify-center items-center pointer-events-none">
+                  <p className="text-white">
+                    {img.breed.split("-")[0].charAt(0).toUpperCase() +
+                      img.breed.split("-")[0].substring(1)}
+                  </p>
+                </div>
+              </div>
             </Card>
           </Grid>
         ))}
